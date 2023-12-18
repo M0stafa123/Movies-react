@@ -7,13 +7,14 @@ const Pagination = ({ handlePageClick, pageCount }) => {
         breakLabel="..."
         nextLabel="next >"
         onPageChange={handlePageClick}
-        pageRangeDisplayed={5}
+        pageRangeDisplayed={2}
+        marginPagesDisplayed={2}
         pageCount={pageCount}
         previousLabel="< previous"
-        pageLinkClassName="p-1 border min-w-[2.5rem] border-[#FA8C8C] text-[#AA0C23] text-center rounded-md hover:bg-[#EE575B] hover:text-white inline-block"
+        pageLinkClassName="p-1 border md:min-w-[2.5rem]  border-[#FA8C8C] text-[#AA0C23] text-center rounded-md hover:bg-[#EE575B] hover:text-white inline-block text-xs md:text-xl"
         breakClassName="text-[#FA8C8C]"
-        nextLinkClassName="p-1 border  border-[#FA8C8C] text-[#AA0C23] text-center rounded-md hover:bg-[#EE575B] hover:text-white"
-        previousLinkClassName="p-1 border border-[#FA8C8C] text-[#AA0C23] text-center rounded-md hover:bg-[#EE575B] hover:text-white"
+        nextLinkClassName="p-1 border  border-[#FA8C8C] text-[#AA0C23] text-center rounded-md hover:bg-[#EE575B] hover:text-white text-xs md:text-xl"
+        previousLinkClassName="p-1 border border-[#FA8C8C] text-[#AA0C23] text-center rounded-md hover:bg-[#EE575B] hover:text-white text-xs md:text-xl"
         activeLinkClassName="!text-white !bg-[#AA0C23]"
       />
     </footer>

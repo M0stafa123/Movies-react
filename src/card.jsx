@@ -16,7 +16,7 @@ const Card = ({ pageCount, setMoveis, Movies }) => {
         Movies.results.map((movie) => {
           return (
             <section key={movie.id} className=" relative ">
-              <div className="img">
+              <div className="img rounded-md overflow-hidden">
                 <img
                   className="h-[600px] w-[400px]"
                   src={"https://image.tmdb.org/t/p/w400" + movie.poster_path}
@@ -25,7 +25,7 @@ const Card = ({ pageCount, setMoveis, Movies }) => {
               </div>
               <Link
                 to={`/movie/${movie.id}`}
-                className="info opacity-0 absolute top-0 left-0 w-full h-full bg-slate-950 text-white text-center flex flex-col justify-center"
+                className="info opacity-0 absolute top-0 left-0 w-full h-full bg-slate-950 text-white text-center flex flex-col justify-center rounded-md"
               >
                 <p>Movie Name : {movie.original_title}</p>
                 <p className="my-4">release Date : {movie.release_date}</p>

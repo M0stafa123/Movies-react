@@ -5,6 +5,7 @@ const Preview = () => {
   const { id } = useParams();
   const { Movies } = useData(`
 https://api.themoviedb.org/3/movie/${id}?api_key=9ca882c0d9271bac0450ebcb904575b0`);
+  console.log(Movies);
   return (
     <main className="md:w-4/5 w-full  mx-auto p-5 mt-5">
       {Movies && (
@@ -15,6 +16,14 @@ https://api.themoviedb.org/3/movie/${id}?api_key=9ca882c0d9271bac0450ebcb904575b
               <p className="my-4">release Date : {Movies.release_date}</p>
               <p className="mb-4">Votes : {Movies.vote_count}</p>
               <p>Rate : {Movies.vote_average}</p>
+              <p className="my-4">
+                Genres :{" "}
+                {Movies.genres.map((e) => (
+                  <span className=" mx-1 " key={e.id}>
+                    {e.name}{" "}
+                  </span>
+                ))}
+              </p>
             </section>
             <img
               className="rounded-md"

@@ -1,19 +1,23 @@
 import { Link } from "react-router-dom";
-const Header = ({ setPageCount, setMoveis }) => {
+import { useDispatch } from "react-redux";
+import { fetchMovies } from "./reducers/Moviereducer";
+
+const Header = ({ setPageCount, setQuery }) => {
+  const dispatch = useDispatch();
   const handleSearch = async (search) => {
     if (search === "") {
-      const searchRes = await fetch(
-        `https://api.themoviedb.org/3/movie/popular?api_key=9ca882c0d9271bac0450ebcb904575b0`
-      ).then((res) => res.json());
-      setMoveis(searchRes);
+      dispatch(fetchMovies()).then((data) => {
+        setPageCount(data.payload.total_pages);
+      });
+      setQuery(null);
     } else {
-      const searchRes = await fetch(
-        `https://api.themoviedb.org/3/search/movie?query=${search}&api_key=9ca882c0d9271bac0450ebcb904575b0`
-      ).then((res) => res.json());
-      setMoveis(searchRes);
-      setPageCount(searchRes.total_pages);
+      dispatch(fetchMovies({ search })).then((data) => {
+        setPageCount(data.payload.total_pages);
+      });
+      setQuery(search);
     }
   };
+
   return (
     <header className="bg-[#D62433]">
       <nav className="flex items-center gap-5  justify-between p-5 w-4/5 mx-auto">

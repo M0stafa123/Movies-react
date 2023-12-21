@@ -1,25 +1,18 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./header";
-import { useState } from "react";
 import Card from "./card";
 import Preview from "./moviePreview";
-import useData from "./useData";
+import { useState } from "react";
 function App() {
   const [pageCount, setPageCount] = useState(500);
-  const { Movies, setMoveis } = useData(
-    "https://api.themoviedb.org/3/movie/popular?api_key=9ca882c0d9271bac0450ebcb904575b0"
-  );
+  const [query, setQuery] = useState(null);
+  console.log(query);
   return (
     <div className="App  ">
       <BrowserRouter>
-        <Header setPageCount={setPageCount} setMoveis={setMoveis} />
+        <Header setPageCount={setPageCount} setQuery={setQuery} />
         <Routes>
-          <Route
-            path="/"
-            element={
-              <Card pageCount={pageCount} Movies={Movies} setMoveis={setMoveis} />
-            }
-          />
+          <Route path="/" element={<Card pageCount={pageCount} query={query} />} />
           <Route path="/movie/:id" element={<Preview />} />
         </Routes>
       </BrowserRouter>

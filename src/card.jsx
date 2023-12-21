@@ -1,19 +1,37 @@
 import { Link } from "react-router-dom";
 import Pagination from "./pagination";
-const Card = ({ pageCount, setMoveis, Movies }) => {
-  const handlePageClick = async (data) => {
-    const newData = await fetch(
-      `https://api.themoviedb.org/3/movie/popular?api_key=9ca882c0d9271bac0450ebcb904575b0&page=${
-        data.selected + 1
-      }`
-    ).then((res) => res.json());
-    setMoveis(newData);
+import { useSelector, useDispatch } from "react-redux";
+import { fetchMovies } from "./reducers/Moviereducer";
+import { useEffect } from "react";
+const Card = ({ pageCount, query }) => {
+  const { Movies, isLoading, error } = useSelector((state) => state.Movies);
+  const dispatch = useDispatch();
+  const handlePageClick = (data, query) => {
+    const page = data.selected + 1;
+    if (query) {
+      dispatch(fetchMovies({ search: query, page: page }));
+      console.log("there is query");
+    } else {
+      dispatch(fetchMovies({ page: page }));
+      console.log("there is no query");
+    }
+    console.log(data);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
-
+  useEffect(() => {
+    dispatch(fetchMovies());
+  }, [dispatch]);
+  console.log(Movies);
   return (
     <article className="flex flex-wrap gap-5 justify-center items-center p-5 ">
-      {Movies && Movies.results.length < 1 && <div>No Movies...</div>}
+      {isLoading && <div>Loading...</div>}
+      {error && <p>Error loading movies.</p>}
+      {Movies && Movies.results && Movies.results.length < 1 && <div>No Movies...</div>}
       {Movies &&
+        Movies.results &&
         Movies.results.map((movie) => {
           return (
             <section key={movie.id} className=" relative ">
@@ -37,7 +55,10 @@ const Card = ({ pageCount, setMoveis, Movies }) => {
           );
         })}
       {Movies && Movies.total_pages > 1 && (
-        <Pagination handlePageClick={handlePageClick} pageCount={pageCount} />
+        <Pagination
+          handlePageClick={(data) => handlePageClick(data, query)}
+          pageCount={pageCount}
+        />
       )}
     </article>
   );

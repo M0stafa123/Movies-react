@@ -1,14 +1,20 @@
 import { Link } from "react-router-dom";
-import useData from "./useData";
 import { useParams } from "react-router";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { fetchMovies } from "./reducers/Moviereducer";
 const Preview = () => {
+  const dispatch = useDispatch();
+  const { Movies, isLoading, error } = useSelector((state) => state.Movies);
   const { id } = useParams();
-  const { Movies } = useData(`
-https://api.themoviedb.org/3/movie/${id}?api_key=9ca882c0d9271bac0450ebcb904575b0`);
-  console.log(Movies);
+  useEffect(() => {
+    dispatch(fetchMovies({ id: id }));
+  }, [dispatch, id]);
   return (
     <main className="md:w-4/5 w-full  mx-auto p-5 mt-5">
-      {Movies && (
+      {isLoading && <div className=" text-4xl mt-10 text-center">Loading...</div>}
+      {error && <p className=" text-4xl mt-10 text-center">Error loading movie.</p>}
+      {Movies && Movies.genres && (
         <article className=" max-w-3xl mx-auto">
           <div className="md:flex-row flex-col gap-5  flex justify-around items-center bg-[#BCD7FE] rounded-lg p-3">
             <section className="data text-center">

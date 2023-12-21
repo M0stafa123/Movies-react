@@ -9,8 +9,8 @@ https://api.themoviedb.org/3/movie/${id}?api_key=9ca882c0d9271bac0450ebcb904575b
   return (
     <main className="md:w-4/5 w-full  mx-auto p-5 mt-5">
       {Movies && (
-        <article>
-          <div className="md:flex-row flex-col gap-5  flex justify-around items-center bg-[#FEC0C0] rounded-lg p-3">
+        <article className=" max-w-3xl mx-auto">
+          <div className="md:flex-row flex-col gap-5  flex justify-around items-center bg-[#BCD7FE] rounded-lg p-3">
             <section className="data text-center">
               <p>Movie Name : {Movies.original_title}</p>
               <p className="my-4">release Date : {Movies.release_date}</p>
@@ -31,7 +31,7 @@ https://api.themoviedb.org/3/movie/${id}?api_key=9ca882c0d9271bac0450ebcb904575b
               alt=""
             />
           </div>
-          <section className="Story items-center bg-[#FEC0C0] rounded-lg p-4 mt-10">
+          <section className="Story items-center bg-[#BCD7FE] rounded-lg p-4 mt-10">
             <h1 className=" text-3xl my-3">Overview:</h1>
             <p>{Movies.overview}</p>
           </section>

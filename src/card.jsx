@@ -1,4 +1,4 @@
-import { Link, useSearchParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Pagination from "./pagination";
 const Card = ({ pageCount, setMoveis, Movies }) => {
   const handlePageClick = async (data) => {
@@ -12,6 +12,7 @@ const Card = ({ pageCount, setMoveis, Movies }) => {
 
   return (
     <article className="flex flex-wrap gap-5 justify-center items-center p-5 ">
+      {Movies && Movies.results.length < 1 && <div>No Movies...</div>}
       {Movies &&
         Movies.results.map((movie) => {
           return (

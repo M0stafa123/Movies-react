@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import useData from "./useData";
 const Header = ({ setPageCount, setMoveis }) => {
   const handleSearch = async (search) => {
     if (search === "") {

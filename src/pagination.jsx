@@ -3,7 +3,7 @@ const Pagination = ({ handlePageClick, pageCount }) => {
   return (
     <footer className=" basis-full">
       <ReactPaginate
-        className="flex items-center gap-2 justify-center p-4 my-4"
+        className="flex items-center gap-1   md:gap-2 justify-center py-0 md:p-4 my-4"
         breakLabel="..."
         nextLabel="next >"
         onPageChange={handlePageClick}

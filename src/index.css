@@ -1,9 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* .img {
-  @apply hover:next-Element:opacity-80;
-} */
 .img {
   @apply hover:nextSibling:opacity-90;
 }

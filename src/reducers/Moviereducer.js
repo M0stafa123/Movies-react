@@ -10,10 +10,9 @@ export const fetchMovies = createAsyncThunk(
     } else {
       url = `https://api.themoviedb.org/3/movie/popular?api_key=9ca882c0d9271bac0450ebcb904575b0&page=${page}`;
     }
-    console.log(url);
     const res = await fetch(url);
     const data = await res.json();
-    return await data;
+    return data;
   }
 );
 const moviesSlice = createSlice({
@@ -23,7 +22,6 @@ const moviesSlice = createSlice({
     isLoading: false,
     error: false,
   },
-  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchMovies.fulfilled, (state, { payload }) => {
       state.isLoading = false;

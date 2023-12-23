@@ -7,14 +7,14 @@ const Header = ({ setPageCount, setQuery }) => {
   const handleSearch = async (search) => {
     if (search === "") {
       dispatch(fetchMovies()).then((data) => {
-        setPageCount(data.payload.total_pages);
+        setPageCount(500);
+        setQuery(null);
       });
-      setQuery(null);
     } else {
       dispatch(fetchMovies({ search })).then((data) => {
         setPageCount(data.payload.total_pages);
+        setQuery(search);
       });
-      setQuery(search);
     }
   };
 

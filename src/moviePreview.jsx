@@ -7,7 +7,6 @@ const Preview = () => {
   const dispatch = useDispatch();
   const { Movies, isLoading, error } = useSelector((state) => state.Movies);
   const { id } = useParams();
-  console.log(Movies);
   useEffect(() => {
     dispatch(fetchMovies({ id: id }));
   }, [dispatch, id]);

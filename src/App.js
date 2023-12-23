@@ -6,7 +6,6 @@ import { useState } from "react";
 function App() {
   const [pageCount, setPageCount] = useState(500);
   const [query, setQuery] = useState(null);
-  console.log(query);
   return (
     <div className="App  ">
       <BrowserRouter>

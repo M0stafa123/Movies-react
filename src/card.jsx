@@ -15,7 +15,6 @@ const Card = ({ pageCount, query }) => {
       dispatch(fetchMovies({ page: page }));
       console.log("there is no query");
     }
-    console.log(data);
     window.scrollTo({
       top: 0,
       behavior: "smooth",
@@ -24,7 +23,6 @@ const Card = ({ pageCount, query }) => {
   useEffect(() => {
     dispatch(fetchMovies());
   }, [dispatch]);
-  console.log(Movies);
   return (
     <article className="flex flex-wrap gap-5 justify-center items-center p-5 ">
       {isLoading && <div>Loading...</div>}
